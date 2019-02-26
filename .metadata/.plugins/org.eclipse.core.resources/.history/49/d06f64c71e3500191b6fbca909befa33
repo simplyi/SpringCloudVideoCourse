@@ -1,0 +1,5 @@
+server.port=8010
+spring.application.name=discoveryservice
+eureka.client.registerWithEureka=false
+eureka.client.fetchRegistry=false
+eureka.client.serviceUrl.defaultZone = http://localhost:8010/eureka

@@ -1,0 +1,5 @@
+package com.appsdeveloperblog.photoapp.api.account.ui.controllers;
+
+public class AccountController {
+
+}
