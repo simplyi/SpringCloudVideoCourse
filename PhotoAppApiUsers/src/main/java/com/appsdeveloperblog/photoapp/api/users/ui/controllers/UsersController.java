@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.appsdeveloperblog.photoapp.api.users.ui.model.CreateUserRequestModel;
-
+import com.appsdeveloperblog.photoapp.api.users.ui.model.CreateUserResponseModel;
 import com.appsdeveloperblog.photoapp.api.users.service.*;
 import com.appsdeveloperblog.photoapp.api.users.shared.*;
 
@@ -36,14 +36,17 @@ public class UsersController {
  
 	
 	@PostMapping
-	public ResponseEntity createUser(@RequestBody CreateUserRequestModel userDetails)
+	public ResponseEntity<CreateUserResponseModel> createUser(@RequestBody CreateUserRequestModel userDetails)
 	{
 		ModelMapper modelMapper = new ModelMapper(); 
 		modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
 		
 		UserDto userDto = modelMapper.map(userDetails, UserDto.class);
-		usersService.createUser(userDto);
 		
-		return new ResponseEntity(HttpStatus.CREATED);
+		UserDto createdUser = usersService.createUser(userDto);
+		
+		CreateUserResponseModel returnValue = modelMapper.map(createdUser, CreateUserResponseModel.class);
+		
+		return ResponseEntity.status(HttpStatus.CREATED).body(returnValue);
 	}
 }
