@@ -3066,3 +3066,636 @@ Binding(COMMAND+SHIFT+T,
 
 !ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-02-26 06:17:21.451
 !MESSAGE executing callback sts4.classpath.MTItZRJf SUCCESS [done]
+
+!ENTRY org.eclipse.lsp4e 4 0 2019-03-19 07:23:47.289
+!MESSAGE 
+!STACK 0
+java.util.concurrent.TimeoutException
+	at java.util.concurrent.CompletableFuture.timedGet(CompletableFuture.java:1771)
+	at java.util.concurrent.CompletableFuture.get(CompletableFuture.java:1915)
+	at org.eclipse.lsp4e.LanguageServerWrapper.supportsWorkspaceFolderCapability(LanguageServerWrapper.java:447)
+	at org.eclipse.lsp4e.LanguageServerWrapper.canOperate(LanguageServerWrapper.java:436)
+	at org.eclipse.lsp4e.LanguageServerWrapper.canOperate(LanguageServerWrapper.java:737)
+	at org.eclipse.lsp4e.LanguageServiceAccessor.lambda$6(LanguageServiceAccessor.java:333)
+	at java.util.stream.ReferencePipeline$2$1.accept(ReferencePipeline.java:174)
+	at java.util.stream.ReferencePipeline$2$1.accept(ReferencePipeline.java:175)
+	at java.util.HashMap$KeySpliterator.forEachRemaining(HashMap.java:1556)
+	at java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:481)
+	at java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:471)
+	at java.util.stream.ReduceOps$ReduceOp.evaluateSequential(ReduceOps.java:708)
+	at java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
+	at java.util.stream.ReferencePipeline.collect(ReferencePipeline.java:499)
+	at org.eclipse.lsp4e.LanguageServiceAccessor.getLSWrappers(LanguageServiceAccessor.java:334)
+	at org.eclipse.lsp4e.LanguageServiceAccessor.getLanguageServers(LanguageServiceAccessor.java:528)
+	at org.eclipse.lsp4e.ConnectDocumentToLanguageServerSetupParticipant$1.run(ConnectDocumentToLanguageServerSetupParticipant.java:50)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.lsp4e 4 0 2019-03-19 07:23:48.290
+!MESSAGE 
+!STACK 0
+java.util.concurrent.TimeoutException
+	at java.util.concurrent.CompletableFuture.timedGet(CompletableFuture.java:1771)
+	at java.util.concurrent.CompletableFuture.get(CompletableFuture.java:1915)
+	at org.eclipse.lsp4e.LanguageServerWrapper.supportsWorkspaceFolderCapability(LanguageServerWrapper.java:447)
+	at org.eclipse.lsp4e.LanguageServerWrapper.canOperate(LanguageServerWrapper.java:436)
+	at org.eclipse.lsp4e.LanguageServerWrapper.canOperate(LanguageServerWrapper.java:737)
+	at org.eclipse.lsp4e.LanguageServiceAccessor.lambda$7(LanguageServiceAccessor.java:351)
+	at java.util.stream.MatchOps$1MatchSink.accept(MatchOps.java:90)
+	at java.util.HashMap$KeySpliterator.tryAdvance(HashMap.java:1577)
+	at java.util.stream.ReferencePipeline.forEachWithCancel(ReferencePipeline.java:126)
+	at java.util.stream.AbstractPipeline.copyIntoWithCancel(AbstractPipeline.java:498)
+	at java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:485)
+	at java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:471)
+	at java.util.stream.MatchOps$MatchOp.evaluateSequential(MatchOps.java:230)
+	at java.util.stream.MatchOps$MatchOp.evaluateSequential(MatchOps.java:196)
+	at java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
+	at java.util.stream.ReferencePipeline.anyMatch(ReferencePipeline.java:449)
+	at org.eclipse.lsp4e.LanguageServiceAccessor.getLSWrappers(LanguageServiceAccessor.java:350)
+	at org.eclipse.lsp4e.LanguageServiceAccessor.getLanguageServers(LanguageServiceAccessor.java:528)
+	at org.eclipse.lsp4e.ConnectDocumentToLanguageServerSetupParticipant$1.run(ConnectDocumentToLanguageServerSetupParticipant.java:50)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-19 07:23:48.538
+!MESSAGE ClasspathListenerHandler addClasspathListener sts4.classpath.PoFkIrmG
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-19 07:23:48.538
+!MESSAGE subscribing to classpath changes: sts4.classpath.PoFkIrmG
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-19 07:23:48.538
+!MESSAGE Setting up ClasspathListenerManager
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-19 07:23:48.539
+!MESSAGE subsribers = [sts4.classpath.PoFkIrmG]
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-19 07:23:48.539
+!MESSAGE Sending initial event for all projects ...
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-19 07:23:48.540
+!MESSAGE project PhotoAppApiZuulAPIGateway ...
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-19 07:23:48.540
+!MESSAGE project PhotoAppApiAccountManagement ...
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-19 07:23:48.540
+!MESSAGE Preparing classpath changed notification PhotoAppApiZuulAPIGateway
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-19 07:23:48.540
+!MESSAGE project PhotoAppApiUsers ...
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-19 07:23:48.541
+!MESSAGE exists = true open = true => deleted = false
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-19 07:23:48.541
+!MESSAGE project PhotoAppDiscoveryService ...
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-19 07:23:48.541
+!MESSAGE Sending initial event for all projects DONE
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-19 07:23:48.541
+!MESSAGE ClasspathListenerHandler addClasspathListener sts4.classpath.PoFkIrmG => OK
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-19 07:23:48.543
+!MESSAGE classpath=167 entries
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-19 07:23:48.543
+!MESSAGE executing callback sts4.classpath.PoFkIrmG PhotoAppApiZuulAPIGateway false 167
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-19 07:23:48.586
+!MESSAGE executing callback sts4.classpath.PoFkIrmG SUCCESS [done]
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-19 07:23:48.586
+!MESSAGE Preparing classpath changed notification PhotoAppDiscoveryService
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-19 07:23:48.586
+!MESSAGE exists = true open = true => deleted = false
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-19 07:23:48.588
+!MESSAGE classpath=159 entries
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-19 07:23:48.589
+!MESSAGE executing callback sts4.classpath.PoFkIrmG PhotoAppDiscoveryService false 159
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-19 07:23:48.600
+!MESSAGE executing callback sts4.classpath.PoFkIrmG SUCCESS [done]
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-19 07:23:48.600
+!MESSAGE Preparing classpath changed notification PhotoAppApiUsers
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-19 07:23:48.601
+!MESSAGE exists = true open = true => deleted = false
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-19 07:23:48.604
+!MESSAGE classpath=173 entries
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-19 07:23:48.604
+!MESSAGE executing callback sts4.classpath.PoFkIrmG PhotoAppApiUsers false 173
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-19 07:23:48.615
+!MESSAGE executing callback sts4.classpath.PoFkIrmG SUCCESS [done]
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-19 07:23:48.615
+!MESSAGE Preparing classpath changed notification PhotoAppApiAccountManagement
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-19 07:23:48.615
+!MESSAGE exists = true open = true => deleted = false
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-19 07:23:48.619
+!MESSAGE classpath=145 entries
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-19 07:23:48.619
+!MESSAGE executing callback sts4.classpath.PoFkIrmG PhotoAppApiAccountManagement false 145
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-19 07:23:48.626
+!MESSAGE executing callback sts4.classpath.PoFkIrmG SUCCESS [done]
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-19 07:25:18.712
+!MESSAGE ClasspathListenerHandler removeClasspathListener sts4.classpath.PoFkIrmG
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-19 07:25:18.712
+!MESSAGE unsubscribing from classpath changes: sts4.classpath.PoFkIrmG
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-19 07:25:18.713
+!MESSAGE subsribers = null
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-19 07:25:18.713
+!MESSAGE ClasspathListenerHandler removeClasspathListener sts4.classpath.PoFkIrmG => OK
+!SESSION 2019-03-19 07:25:24.972 -----------------------------------------------
+eclipse.buildId=4.1.1.201901241133-RELEASE
+java.version=1.8.0_202
+java.vendor=Oracle Corporation
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=en_CA
+Framework arguments:  -product org.springframework.boot.ide.branding.sts4 -keyring /Users/skargopolov/.eclipse_keyring
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -product org.springframework.boot.ide.branding.sts4 -keyring /Users/skargopolov/.eclipse_keyring
+
+!ENTRY org.eclipse.jface 2 0 2019-03-19 07:25:31.439
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2019-03-19 07:25:31.439
+!MESSAGE A conflict occurred for COMMAND+SHIFT+T:
+Binding(COMMAND+SHIFT+T,
+	ParameterizedCommand(Command(org.eclipse.jdt.ui.navigate.open.type,Open Type,
+		Open a type in a Java editor,
+		Category(org.eclipse.ui.category.navigate,Navigate,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@28db2afb,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+Binding(COMMAND+SHIFT+T,
+	ParameterizedCommand(Command(org.eclipse.lsp4e.symbolinworkspace,Go to Symbol in Workspace,
+		,
+		Category(org.eclipse.lsp4e.category,Language Servers,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@5c703860,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-19 07:25:37.020
+!MESSAGE Entering DelegatingStreamConnectionProvider()
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-19 07:25:37.021
+!MESSAGE DelegatingStreamConnectionProvider classloader = org.eclipse.osgi.internal.loader.EquinoxClassLoader@516370c1[org.springframework.tooling.boot.ls:1.4.0.201902210636(id=658)]
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-19 07:25:37.022
+!MESSAGE SpringBootLanguageServer exists!
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-19 07:25:37.080
+!MESSAGE Instantiating ReusableClasspathListenerHandler
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-19 07:25:40.383
+!MESSAGE ClasspathListenerHandler addClasspathListener sts4.classpath.UaCcHGiA
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-19 07:25:40.384
+!MESSAGE subscribing to classpath changes: sts4.classpath.UaCcHGiA
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-19 07:25:40.385
+!MESSAGE Setting up ClasspathListenerManager
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-19 07:25:40.386
+!MESSAGE subsribers = [sts4.classpath.UaCcHGiA]
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-19 07:25:40.387
+!MESSAGE Sending initial event for all projects ...
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-19 07:25:40.389
+!MESSAGE project PhotoAppApiZuulAPIGateway ...
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-19 07:25:40.390
+!MESSAGE project PhotoAppApiAccountManagement ...
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-19 07:25:40.391
+!MESSAGE Preparing classpath changed notification PhotoAppApiZuulAPIGateway
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-19 07:25:40.391
+!MESSAGE project PhotoAppApiUsers ...
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-19 07:25:40.391
+!MESSAGE exists = true open = true => deleted = false
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-19 07:25:40.392
+!MESSAGE project PhotoAppDiscoveryService ...
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-19 07:25:40.392
+!MESSAGE Sending initial event for all projects DONE
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-19 07:25:40.392
+!MESSAGE ClasspathListenerHandler addClasspathListener sts4.classpath.UaCcHGiA => OK
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-19 07:25:40.398
+!MESSAGE classpath=162 entries
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-19 07:25:40.399
+!MESSAGE executing callback sts4.classpath.UaCcHGiA PhotoAppApiZuulAPIGateway false 162
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-19 07:25:40.445
+!MESSAGE executing callback sts4.classpath.UaCcHGiA SUCCESS [done]
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-19 07:25:40.445
+!MESSAGE Preparing classpath changed notification PhotoAppDiscoveryService
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-19 07:25:40.446
+!MESSAGE exists = true open = true => deleted = false
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-19 07:25:40.470
+!MESSAGE classpath=159 entries
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-19 07:25:40.471
+!MESSAGE executing callback sts4.classpath.UaCcHGiA PhotoAppDiscoveryService false 159
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-19 07:25:40.490
+!MESSAGE executing callback sts4.classpath.UaCcHGiA SUCCESS [done]
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-19 07:25:40.490
+!MESSAGE Preparing classpath changed notification PhotoAppApiUsers
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-19 07:25:40.491
+!MESSAGE exists = true open = true => deleted = false
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-19 07:25:40.496
+!MESSAGE classpath=145 entries
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-19 07:25:40.497
+!MESSAGE executing callback sts4.classpath.UaCcHGiA PhotoAppApiUsers false 145
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-19 07:25:40.509
+!MESSAGE executing callback sts4.classpath.UaCcHGiA SUCCESS [done]
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-19 07:25:40.510
+!MESSAGE Preparing classpath changed notification PhotoAppApiAccountManagement
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-19 07:25:40.511
+!MESSAGE exists = true open = true => deleted = false
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-19 07:25:40.516
+!MESSAGE classpath=145 entries
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-19 07:25:40.516
+!MESSAGE executing callback sts4.classpath.UaCcHGiA PhotoAppApiAccountManagement false 145
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-19 07:25:40.528
+!MESSAGE executing callback sts4.classpath.UaCcHGiA SUCCESS [done]
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-19 07:27:07.688
+!MESSAGE Preparing classpath changed notification PhotoAppApiZuulAPIGateway
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-19 07:27:07.688
+!MESSAGE exists = true open = true => deleted = false
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-19 07:27:07.692
+!MESSAGE classpath=167 entries
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-19 07:27:07.693
+!MESSAGE executing callback sts4.classpath.UaCcHGiA PhotoAppApiZuulAPIGateway false 167
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-19 07:27:07.723
+!MESSAGE executing callback sts4.classpath.UaCcHGiA SUCCESS [done]
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-19 09:25:02.901
+!MESSAGE ClasspathListenerHandler removeClasspathListener sts4.classpath.UaCcHGiA
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-19 09:25:02.902
+!MESSAGE unsubscribing from classpath changes: sts4.classpath.UaCcHGiA
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-19 09:25:02.902
+!MESSAGE subsribers = null
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-19 09:25:02.902
+!MESSAGE ClasspathListenerHandler removeClasspathListener sts4.classpath.UaCcHGiA => OK
+!SESSION 2019-03-20 05:53:13.563 -----------------------------------------------
+eclipse.buildId=4.1.1.201901241133-RELEASE
+java.version=1.8.0_202
+java.vendor=Oracle Corporation
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=en_CA
+Framework arguments:  -product org.springframework.boot.ide.branding.sts4 -keyring /Users/skargopolov/.eclipse_keyring
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -product org.springframework.boot.ide.branding.sts4 -keyring /Users/skargopolov/.eclipse_keyring
+
+!ENTRY org.eclipse.jface 2 0 2019-03-20 05:53:24.832
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2019-03-20 05:53:24.832
+!MESSAGE A conflict occurred for COMMAND+SHIFT+T:
+Binding(COMMAND+SHIFT+T,
+	ParameterizedCommand(Command(org.eclipse.jdt.ui.navigate.open.type,Open Type,
+		Open a type in a Java editor,
+		Category(org.eclipse.ui.category.navigate,Navigate,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@6eab92f3,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+Binding(COMMAND+SHIFT+T,
+	ParameterizedCommand(Command(org.eclipse.lsp4e.symbolinworkspace,Go to Symbol in Workspace,
+		,
+		Category(org.eclipse.lsp4e.category,Language Servers,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@321b7b9e,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-20 05:53:30.260
+!MESSAGE Entering DelegatingStreamConnectionProvider()
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-20 05:53:30.262
+!MESSAGE DelegatingStreamConnectionProvider classloader = org.eclipse.osgi.internal.loader.EquinoxClassLoader@2d21d12b[org.springframework.tooling.boot.ls:1.4.0.201902210636(id=658)]
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-20 05:53:30.263
+!MESSAGE SpringBootLanguageServer exists!
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-20 05:53:30.400
+!MESSAGE Instantiating ReusableClasspathListenerHandler
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-20 05:53:33.462
+!MESSAGE ClasspathListenerHandler addClasspathListener sts4.classpath.suHuExnk
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-20 05:53:33.462
+!MESSAGE subscribing to classpath changes: sts4.classpath.suHuExnk
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-20 05:53:33.464
+!MESSAGE Setting up ClasspathListenerManager
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-20 05:53:33.465
+!MESSAGE subsribers = [sts4.classpath.suHuExnk]
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-20 05:53:33.465
+!MESSAGE Sending initial event for all projects ...
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-20 05:53:33.467
+!MESSAGE project PhotoAppApiZuulAPIGateway ...
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-20 05:53:33.468
+!MESSAGE project PhotoAppApiAccountManagement ...
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-20 05:53:33.468
+!MESSAGE Preparing classpath changed notification PhotoAppApiZuulAPIGateway
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-20 05:53:33.469
+!MESSAGE project PhotoAppApiUsers ...
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-20 05:53:33.469
+!MESSAGE project PhotoAppDiscoveryService ...
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-20 05:53:33.469
+!MESSAGE exists = true open = true => deleted = false
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-20 05:53:33.470
+!MESSAGE Sending initial event for all projects DONE
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-20 05:53:33.470
+!MESSAGE ClasspathListenerHandler addClasspathListener sts4.classpath.suHuExnk => OK
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-20 05:53:33.478
+!MESSAGE classpath=167 entries
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-20 05:53:33.479
+!MESSAGE executing callback sts4.classpath.suHuExnk PhotoAppApiZuulAPIGateway false 167
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-20 05:53:33.526
+!MESSAGE executing callback sts4.classpath.suHuExnk SUCCESS [done]
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-20 05:53:33.526
+!MESSAGE Preparing classpath changed notification PhotoAppDiscoveryService
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-20 05:53:33.527
+!MESSAGE exists = true open = true => deleted = false
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-20 05:53:33.532
+!MESSAGE classpath=159 entries
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-20 05:53:33.532
+!MESSAGE executing callback sts4.classpath.suHuExnk PhotoAppDiscoveryService false 159
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-20 05:53:33.548
+!MESSAGE executing callback sts4.classpath.suHuExnk SUCCESS [done]
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-20 05:53:33.549
+!MESSAGE Preparing classpath changed notification PhotoAppApiUsers
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-20 05:53:33.549
+!MESSAGE exists = true open = true => deleted = false
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-20 05:53:33.553
+!MESSAGE classpath=145 entries
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-20 05:53:33.553
+!MESSAGE executing callback sts4.classpath.suHuExnk PhotoAppApiUsers false 145
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-20 05:53:33.566
+!MESSAGE executing callback sts4.classpath.suHuExnk SUCCESS [done]
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-20 05:53:33.566
+!MESSAGE Preparing classpath changed notification PhotoAppApiAccountManagement
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-20 05:53:33.567
+!MESSAGE exists = true open = true => deleted = false
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-20 05:53:33.571
+!MESSAGE classpath=145 entries
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-20 05:53:33.571
+!MESSAGE executing callback sts4.classpath.suHuExnk PhotoAppApiAccountManagement false 145
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-20 05:53:33.584
+!MESSAGE executing callback sts4.classpath.suHuExnk SUCCESS [done]
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-20 06:09:59.327
+!MESSAGE Preparing classpath changed notification PhotoAppApiUsers
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-20 06:09:59.328
+!MESSAGE exists = true open = true => deleted = false
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-20 06:09:59.332
+!MESSAGE classpath=173 entries
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-20 06:09:59.333
+!MESSAGE executing callback sts4.classpath.suHuExnk PhotoAppApiUsers false 173
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-20 06:09:59.355
+!MESSAGE executing callback sts4.classpath.suHuExnk SUCCESS [done]
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-20 09:22:56.475
+!MESSAGE ClasspathListenerHandler removeClasspathListener sts4.classpath.suHuExnk
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-20 09:22:56.478
+!MESSAGE unsubscribing from classpath changes: sts4.classpath.suHuExnk
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-20 09:22:56.478
+!MESSAGE subsribers = null
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-20 09:22:56.479
+!MESSAGE ClasspathListenerHandler removeClasspathListener sts4.classpath.suHuExnk => OK
+
+!ENTRY org.eclipse.ui 4 0 2019-03-20 09:22:57.136
+!MESSAGE Unhandled event loop exception
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3757)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$5.run(PartRenderingEngine.java:1173)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:339)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1062)
+	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:156)
+	at org.eclipse.ui.internal.Workbench.lambda$3(Workbench.java:636)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:339)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:563)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:151)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:155)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:203)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:137)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:107)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:400)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:255)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:659)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:595)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1501)
+!SESSION 2019-03-21 06:07:23.583 -----------------------------------------------
+eclipse.buildId=4.1.1.201901241133-RELEASE
+java.version=1.8.0_202
+java.vendor=Oracle Corporation
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=en_CA
+Framework arguments:  -product org.springframework.boot.ide.branding.sts4 -keyring /Users/skargopolov/.eclipse_keyring
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -product org.springframework.boot.ide.branding.sts4 -keyring /Users/skargopolov/.eclipse_keyring
+
+!ENTRY org.eclipse.jface 2 0 2019-03-21 06:07:31.732
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2019-03-21 06:07:31.732
+!MESSAGE A conflict occurred for COMMAND+SHIFT+T:
+Binding(COMMAND+SHIFT+T,
+	ParameterizedCommand(Command(org.eclipse.jdt.ui.navigate.open.type,Open Type,
+		Open a type in a Java editor,
+		Category(org.eclipse.ui.category.navigate,Navigate,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@321b7b9e,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+Binding(COMMAND+SHIFT+T,
+	ParameterizedCommand(Command(org.eclipse.lsp4e.symbolinworkspace,Go to Symbol in Workspace,
+		,
+		Category(org.eclipse.lsp4e.category,Language Servers,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@21eedcde,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-21 06:07:36.990
+!MESSAGE Entering DelegatingStreamConnectionProvider()
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-21 06:07:36.993
+!MESSAGE DelegatingStreamConnectionProvider classloader = org.eclipse.osgi.internal.loader.EquinoxClassLoader@2d21d12b[org.springframework.tooling.boot.ls:1.4.0.201902210636(id=658)]
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-21 06:07:36.995
+!MESSAGE SpringBootLanguageServer exists!
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-21 06:07:37.082
+!MESSAGE Instantiating ReusableClasspathListenerHandler
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-21 06:07:40.656
+!MESSAGE ClasspathListenerHandler addClasspathListener sts4.classpath.jEZJDfGE
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-21 06:07:40.656
+!MESSAGE subscribing to classpath changes: sts4.classpath.jEZJDfGE
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-21 06:07:40.658
+!MESSAGE Setting up ClasspathListenerManager
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-21 06:07:40.659
+!MESSAGE subsribers = [sts4.classpath.jEZJDfGE]
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-21 06:07:40.659
+!MESSAGE Sending initial event for all projects ...
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-21 06:07:40.662
+!MESSAGE project PhotoAppApiZuulAPIGateway ...
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-21 06:07:40.663
+!MESSAGE project PhotoAppApiAccountManagement ...
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-21 06:07:40.663
+!MESSAGE Preparing classpath changed notification PhotoAppApiZuulAPIGateway
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-21 06:07:40.664
+!MESSAGE project PhotoAppApiUsers ...
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-21 06:07:40.664
+!MESSAGE exists = true open = true => deleted = false
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-21 06:07:40.664
+!MESSAGE project PhotoAppDiscoveryService ...
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-21 06:07:40.665
+!MESSAGE Sending initial event for all projects DONE
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-21 06:07:40.665
+!MESSAGE ClasspathListenerHandler addClasspathListener sts4.classpath.jEZJDfGE => OK
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-21 06:07:40.674
+!MESSAGE classpath=167 entries
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-21 06:07:40.674
+!MESSAGE executing callback sts4.classpath.jEZJDfGE PhotoAppApiZuulAPIGateway false 167
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-21 06:07:40.722
+!MESSAGE executing callback sts4.classpath.jEZJDfGE SUCCESS [done]
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-21 06:07:40.723
+!MESSAGE Preparing classpath changed notification PhotoAppDiscoveryService
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-21 06:07:40.723
+!MESSAGE exists = true open = true => deleted = false
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-21 06:07:40.729
+!MESSAGE classpath=159 entries
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-21 06:07:40.730
+!MESSAGE executing callback sts4.classpath.jEZJDfGE PhotoAppDiscoveryService false 159
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-21 06:07:40.746
+!MESSAGE executing callback sts4.classpath.jEZJDfGE SUCCESS [done]
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-21 06:07:40.746
+!MESSAGE Preparing classpath changed notification PhotoAppApiUsers
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-21 06:07:40.747
+!MESSAGE exists = true open = true => deleted = false
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-21 06:07:40.755
+!MESSAGE classpath=173 entries
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-21 06:07:40.755
+!MESSAGE executing callback sts4.classpath.jEZJDfGE PhotoAppApiUsers false 173
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-21 06:07:40.775
+!MESSAGE executing callback sts4.classpath.jEZJDfGE SUCCESS [done]
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-21 06:07:40.776
+!MESSAGE Preparing classpath changed notification PhotoAppApiAccountManagement
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-21 06:07:40.777
+!MESSAGE exists = true open = true => deleted = false
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-21 06:07:40.781
+!MESSAGE classpath=145 entries
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-21 06:07:40.782
+!MESSAGE executing callback sts4.classpath.jEZJDfGE PhotoAppApiAccountManagement false 145
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-21 06:07:40.792
+!MESSAGE executing callback sts4.classpath.jEZJDfGE SUCCESS [done]

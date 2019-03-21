@@ -1,0 +1,6 @@
+spring.application.name=zuul
+server.port=8011
+eureka.client.serviceUrl.defaultZone = http://localhost:8010/eureka
+
+api.registration.url.path = /users-ws/users
+api.login.url.path = /users-ws/users/login
