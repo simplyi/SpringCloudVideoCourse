@@ -1,5 +1,0 @@
-package com.appsdeveloperblog.photoapp.api.gateway.security;
-
-public class WebSecurity extends WebSecurityConfigurerAdapter {
-
-}
