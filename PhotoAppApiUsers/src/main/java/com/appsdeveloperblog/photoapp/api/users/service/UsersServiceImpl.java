@@ -27,18 +27,19 @@ public class UsersServiceImpl implements UsersService {
 	
 	UsersRepository usersRepository;
 	BCryptPasswordEncoder bCryptPasswordEncoder;
-	RestTemplate restTemplate;
+	//RestTemplate restTemplate;
 	Environment environment;
+	AlbumsServiceClient albumsServiceClient;
 	
 	@Autowired
 	public UsersServiceImpl(UsersRepository usersRepository, 
 			BCryptPasswordEncoder bCryptPasswordEncoder,
-			RestTemplate restTemplate,
+			AlbumsServiceClient albumsServiceClient,
 			Environment environment)
 	{
 		this.usersRepository = usersRepository;
 		this.bCryptPasswordEncoder = bCryptPasswordEncoder;
-		this.restTemplate = restTemplate;
+		this.albumsServiceClient = albumsServiceClient;
 		this.environment = environment;
 	}
  
@@ -88,11 +89,15 @@ public class UsersServiceImpl implements UsersService {
         
         UserDto userDto = new ModelMapper().map(userEntity, UserDto.class);
         
+        /*
         String albumsUrl = String.format(environment.getProperty("albums.url"), userId);
         
         ResponseEntity<List<AlbumResponseModel>> albumsListResponse = restTemplate.exchange(albumsUrl, HttpMethod.GET, null, new ParameterizedTypeReference<List<AlbumResponseModel>>() {
         });
         List<AlbumResponseModel> albumsList = albumsListResponse.getBody(); 
+        */
+        
+        List<AlbumResponseModel> albumsList = albumsServiceClient.getAlbums(userId);
         
 		userDto.setAlbums(albumsList);
 		
