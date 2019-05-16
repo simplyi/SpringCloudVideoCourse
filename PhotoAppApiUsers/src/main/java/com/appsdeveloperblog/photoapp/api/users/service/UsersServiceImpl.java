@@ -6,6 +6,8 @@ import java.util.UUID;
 
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.core.env.Environment;
@@ -20,6 +22,9 @@ import org.springframework.web.client.RestTemplate;
 
 import com.appsdeveloperblog.photoapp.api.users.shared.UserDto;
 import com.appsdeveloperblog.photoapp.api.users.ui.model.AlbumResponseModel;
+
+import feign.FeignException;
+
 import com.appsdeveloperblog.photoapp.api.users.data.*;
 
 @Service
@@ -30,6 +35,8 @@ public class UsersServiceImpl implements UsersService {
 	//RestTemplate restTemplate;
 	Environment environment;
 	AlbumsServiceClient albumsServiceClient;
+	
+	Logger logger = LoggerFactory.getLogger(this.getClass());
 	
 	@Autowired
 	public UsersServiceImpl(UsersRepository usersRepository, 
@@ -98,7 +105,7 @@ public class UsersServiceImpl implements UsersService {
         */
         
         List<AlbumResponseModel> albumsList = albumsServiceClient.getAlbums(userId);
-        
+ 
 		userDto.setAlbums(albumsList);
 		
 		return userDto;
