@@ -8,6 +8,7 @@ import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -56,6 +57,7 @@ public class UsersController {
 	}
 	
     @GetMapping(value="/{userId}", produces = { MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE })
+    @PreAuthorize("principal == #userId")
     public ResponseEntity<UserResponseModel> getUser(@PathVariable("userId") String userId) {
        
         UserDto userDto = usersService.getUserByUserId(userId); 
