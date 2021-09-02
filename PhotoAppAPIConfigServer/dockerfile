@@ -1,4 +1,4 @@
-FROM openjdk:8-jdk-alpine 
+FROM openjdk:11
 VOLUME /tmp 
 COPY apiEncryptionKey.jks apiEncryptionKey.jks
 COPY UnlimitedJCEPolicyJDK8/* /usr/lib/jvm/java-1.8-openjdk/jre/lib/security/ 
