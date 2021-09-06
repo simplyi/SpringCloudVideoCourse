@@ -8,8 +8,8 @@ import org.springframework.cloud.config.server.EnableConfigServer;
 @EnableConfigServer
 public class PhotoAppApiConfigServerApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(PhotoAppApiConfigServerApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(PhotoAppApiConfigServerApplication.class, args);
+    }
 
 }
