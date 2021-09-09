@@ -1,0 +1,75 @@
+version: '3'
+services:
+    rabbitmq-container:
+        image: rabbitmq:3-management
+        ports:
+            - 5672:5672
+            - 15672:15672
+        volumes:
+            - ./rabbitmq/definitions.json:/etc/rabbitmq/definitions.json:ro
+            - ./rabbitmq/rabbitmq.config:/etc/rabbitmq/rabbitmq.config:ro
+
+    photo-app-cloud-config:
+        container_name: photo-app-cloud-config
+        build:
+            context: PhotoAppAPIConfigServer
+            dockerfile: dockerfile
+        image: photo-app-cloud-config
+        ports:
+            - 8012:8012
+        environment:
+            - ENCRYPT.KEY-STORE.LOCATION=file:///apiEncryptionKey.jks
+            - SPRING.RABBITMQ.HOST=rabbitmq-container
+        depends_on:
+            - rabbitmq-container
+
+    photo-app-cloud-discovery:
+        container_name: photo-app-cloud-discovery
+        build:
+            context: PhotoAppDiscoveryService
+            dockerfile: dockerfile
+        image: photo-app-cloud-discovery
+        ports:
+            - 8010:8010
+        environment:
+            - SPRING.CLOUD.CONFIG.URI=http://photo-app-cloud-config:8012
+        depends_on:
+            - rabbitmq-container
+            - photo-app-cloud-config
+
+    photo-app-cloud-zuul:
+        container_name: photo-app-cloud-zuul
+        build:
+            context: PhotoAppApiZuulAPIGateway
+            dockerfile: dockerfile
+        image: photo-app-cloud-zuul
+        ports:
+            - 8011:8011
+        environment:
+            - SPRING.CLOUD.CONFIG.URI=http://photo-app-cloud-config:8012
+            - SPRING.RABBITMQ.HOST=rabbitmq-container
+            - EUREKA.CLIENT.SERVICEURL.DEFAULTZONE=http://test:test@photo-app-cloud-discovery:8010/eureka
+        depends_on:
+            - rabbitmq-container
+            - photo-app-cloud-config
+            - photo-app-cloud-discovery
+
+    photo-app-cloud-users:
+        container_name: photo-app-cloud-users
+        build:
+            context: PhotoAppApiUsers
+            dockerfile: dockerfile
+        image: photo-app-cloud-users
+        ports:
+            - 8000:8000
+        environment:
+            - SPRING.CLOUD.CONFIG.URI=http://photo-app-cloud-config:8012
+            - SPRING.RABBITMQ.HOST=rabbitmq-container
+            - EUREKA.CLIENT.SERVICEURL.DEFAULTZONE=http://test:test@photo-app-cloud-discovery:8010/eureka
+            - SERVER.PORT=8000
+            # You can use container as name instead of ip, docker will automatically determine what the right ip:
+            - GATEWAY.IP=photo-app-cloud-zuul
+        depends_on:
+            - rabbitmq-container
+            - photo-app-cloud-config
+            - photo-app-cloud-discovery
