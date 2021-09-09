@@ -10,11 +10,11 @@ services:
             - ./rabbitmq/rabbitmq.config:/etc/rabbitmq/rabbitmq.config:ro
 
     photo-app-cloud-config:
+        image: photo-app-cloud/config
         container_name: photo-app-cloud-config
         build:
             context: PhotoAppAPIConfigServer
             dockerfile: dockerfile
-        image: photo-app-cloud-config
         ports:
             - 8012:8012
         environment:
@@ -24,11 +24,11 @@ services:
             - rabbitmq-container
 
     photo-app-cloud-discovery:
+        image: photo-app-cloud/discovery
         container_name: photo-app-cloud-discovery
         build:
             context: PhotoAppDiscoveryService
             dockerfile: dockerfile
-        image: photo-app-cloud-discovery
         ports:
             - 8010:8010
         environment:
@@ -38,11 +38,11 @@ services:
             - photo-app-cloud-config
 
     photo-app-cloud-zuul:
+        image: photo-app-cloud/zuul
         container_name: photo-app-cloud-zuul
         build:
             context: PhotoAppApiZuulAPIGateway
             dockerfile: dockerfile
-        image: photo-app-cloud-zuul
         ports:
             - 8011:8011
         environment:
@@ -55,11 +55,11 @@ services:
             - photo-app-cloud-discovery
 
     photo-app-cloud-users:
+        image: photo-app-cloud/users
         container_name: photo-app-cloud-users
         build:
             context: PhotoAppApiUsers
             dockerfile: dockerfile
-        image: photo-app-cloud-users
         ports:
             - 8000:8000
         environment:
@@ -77,4 +77,20 @@ services:
         depends_on:
             - rabbitmq-container
             - photo-app-cloud-config
+            - photo-app-cloud-discovery
+
+    photo-app-cloud-albums:
+        image: photo-app-cloud/albums
+        container_name: photo-app-cloud-albums
+        build:
+            context: PhotoAppApiAlbums
+            dockerfile: dockerfile
+        ports:
+            - 8001:8001
+        environment:
+            - SPRING.RABBITMQ.HOST=rabbitmq-container
+            - EUREKA.CLIENT.SERVICEURL.DEFAULTZONE=http://test:test@photo-app-cloud-discovery:8010/eureka
+            - SERVER.PORT=8001
+        depends_on:
+            - rabbitmq-container
             - photo-app-cloud-discovery
