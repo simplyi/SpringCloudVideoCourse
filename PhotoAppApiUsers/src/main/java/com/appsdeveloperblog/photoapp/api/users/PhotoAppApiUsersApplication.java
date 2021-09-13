@@ -13,8 +13,6 @@ import org.springframework.core.env.Environment;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.client.RestTemplate;
 
-import com.appsdeveloperblog.photoapp.api.users.shared.FeignErrorDecoder;
-
 import feign.Logger;
 
 @SpringBootApplication
@@ -77,7 +75,8 @@ public class PhotoAppApiUsersApplication {
 		System.out.println("Development bean created. myapplication.environment = " + environment.getProperty("myapplication.environment"));
 		return "Development bean";
 	}
-	
+
+	//As FeignErrorDecoder class is annotated with Component this is not needed, left for reference.
 	/*
 	@Bean
 	public FeignErrorDecoder getFeignErrorDecoder()

@@ -1,31 +1,25 @@
 package com.appsdeveloperblog.photoapp.api.users.service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
-
+import com.appsdeveloperblog.photoapp.api.users.data.AlbumsServiceClient;
+import com.appsdeveloperblog.photoapp.api.users.data.UserEntity;
+import com.appsdeveloperblog.photoapp.api.users.data.UsersRepository;
+import com.appsdeveloperblog.photoapp.api.users.shared.UserDto;
+import com.appsdeveloperblog.photoapp.api.users.ui.model.AlbumResponseModel;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.core.env.Environment;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
 
-import com.appsdeveloperblog.photoapp.api.users.shared.UserDto;
-import com.appsdeveloperblog.photoapp.api.users.ui.model.AlbumResponseModel;
-
-import feign.FeignException;
-
-import com.appsdeveloperblog.photoapp.api.users.data.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
 
 @Service
 public class UsersServiceImpl implements UsersService {
@@ -95,7 +89,8 @@ public class UsersServiceImpl implements UsersService {
         if(userEntity == null) throw new UsernameNotFoundException("User not found");
         
         UserDto userDto = new ModelMapper().map(userEntity, UserDto.class);
-        
+
+	//Uncomment to use RestTemplate with client side load balancing
         /*
         String albumsUrl = String.format(environment.getProperty("albums.url"), userId);
         

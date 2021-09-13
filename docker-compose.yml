@@ -74,10 +74,12 @@ services:
             - SPRING.CLOUD.CONFIG.RETRY.MAX-ATTEMPTS=20
             - SPRING.CLOUD.CONFIG.RETRY.MAX-INTERVAL=2000
             - SPRING.CLOUD.CONFIG.RETRY.INITIAL-INTERVAL=2000
+            - SPRING.ZIPKIN.BASE-URL=http://zipkin:9411
         depends_on:
             - rabbitmq-container
             - photo-app-cloud-config
             - photo-app-cloud-discovery
+            - zipkin
 
     photo-app-cloud-albums:
         image: photo-app-cloud/albums
@@ -94,3 +96,12 @@ services:
         depends_on:
             - rabbitmq-container
             - photo-app-cloud-discovery
+
+    # For reference: https://github.com/openzipkin/zipkin/blob/master/docker/examples/docker-compose-example.yml
+    zipkin:
+        image: ghcr.io/openzipkin/zipkin-slim:${TAG:-latest}
+        container_name: zipkin
+        ports:
+            - 9411:9411
+        # Uncomment to enable debug logging
+        # command: --logging.level.zipkin2=DEBUG
