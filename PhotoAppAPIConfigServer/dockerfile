@@ -1,6 +1,7 @@
-FROM openjdk:8-jdk-alpine 
+FROM openjdk:11
 VOLUME /tmp 
 COPY apiEncryptionKey.jks apiEncryptionKey.jks
-COPY UnlimitedJCEPolicyJDK8/* /usr/lib/jvm/java-1.8-openjdk/jre/lib/security/ 
+# this is no longer needed as with jdk11 unlimited crypto policies are installed by default:
+#COPY UnlimitedJCEPolicyJDK8/* /usr/lib/jvm/java-1.8-openjdk/jre/lib/security/
 COPY target/PhotoAppAPIConfigServer-0.0.1-SNAPSHOT.jar ConfigServer.jar 
 ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","ConfigServer.jar"] 
