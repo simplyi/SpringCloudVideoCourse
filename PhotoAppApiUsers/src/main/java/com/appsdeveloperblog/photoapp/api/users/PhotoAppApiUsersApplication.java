@@ -20,7 +20,6 @@ import feign.Logger;
 @SpringBootApplication
 @EnableDiscoveryClient
 @EnableFeignClients
-@EnableCircuitBreaker
 public class PhotoAppApiUsersApplication {
 
 	@Autowired
