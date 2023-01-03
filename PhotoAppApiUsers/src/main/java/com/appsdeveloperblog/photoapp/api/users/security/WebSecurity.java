@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -44,8 +45,11 @@ public class WebSecurity {
 
         http
                 .cors().and()
-                .csrf().disable().authorizeRequests()
-                .antMatchers("/**").hasIpAddress(environment.getProperty("gateway.ip"))
+                .csrf().disable().authorizeHttpRequests()
+                .requestMatchers(HttpMethod.POST, "/users").permitAll()
+                .requestMatchers(HttpMethod.POST, environment.getProperty("login.url.path")).permitAll()
+                .requestMatchers("/h2-console/**").permitAll()
+                //.requestMatchers("/**").hasIpAddress(environment.getProperty("gateway.ip"))
                 .anyRequest().authenticated().and()
 
                 .addFilter(getAuthenticationFilter(authenticationManager))
