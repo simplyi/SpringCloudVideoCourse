@@ -9,6 +9,9 @@ target/
 .settings
 .springBeans
 .sts4-cache
+**/metadata/*
+.metadata
+.metadata/
 
 ### IntelliJ IDEA ###
 .idea

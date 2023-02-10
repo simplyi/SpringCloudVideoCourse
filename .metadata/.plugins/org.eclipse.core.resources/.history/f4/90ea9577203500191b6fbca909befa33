@@ -1,4 +1,0 @@
-server.port=8761
-spring.application.name=discoveryservice
-eureka.client.registerWithEureka=false
-eureka.client.fetchRegistry=false
