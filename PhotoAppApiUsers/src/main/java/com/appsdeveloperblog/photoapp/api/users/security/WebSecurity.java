@@ -13,6 +13,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.access.expression.WebExpressionAuthorizationManager;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import com.appsdeveloperblog.photoapp.api.users.service.UsersService;
 
@@ -51,7 +52,7 @@ public class WebSecurity {
         				"hasIpAddress('"+environment.getProperty("gateway.ip")+"')"
         				))
                 .requestMatchers(HttpMethod.POST, environment.getProperty("login.url.path")).permitAll()
-                .requestMatchers("/h2-console/**").permitAll()
+                .requestMatchers(new AntPathRequestMatcher("/h2-console/**")).permitAll()
                 .anyRequest().authenticated().and()
 
                 .addFilter(getAuthenticationFilter(authenticationManager))
