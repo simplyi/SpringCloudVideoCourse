@@ -41,13 +41,18 @@ public class WebSecurity {
     	
     	AuthenticationManager authenticationManager = authenticationManagerBuilder.build();
     	
+    	// Create AuthenticationFilter
+    	AuthenticationFilter authenticationFilter = 
+    			new AuthenticationFilter(usersService, environment, authenticationManager);
+    	authenticationFilter.setFilterProcessesUrl(environment.getProperty("login.url.path"));
+    	
         http.csrf().disable();
   
         http.authorizeHttpRequests()
         .requestMatchers(HttpMethod.POST, "/users").permitAll()
         .requestMatchers(new AntPathRequestMatcher("/h2-console/**")).permitAll()
         .and()
-        .addFilter(new AuthenticationFilter(usersService, environment, authenticationManager))
+        .addFilter(authenticationFilter)
         .authenticationManager(authenticationManager)
         .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
  
