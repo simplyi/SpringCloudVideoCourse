@@ -2,6 +2,7 @@ package com.appsdeveloperblog.photoapp.api.users;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.cloud.openfeign.EnableFeignClients;
@@ -28,9 +29,9 @@ public class PhotoAppApiUsersApplication {
 	
 	@Bean
 	@LoadBalanced
-	public RestTemplate getRestTemplate()
+	public RestTemplate getRestTemplate(RestTemplateBuilder builder)
 	{
-		return new RestTemplate();
+		return builder.build();
 	}
 	
 	@Bean
@@ -44,5 +45,4 @@ public class PhotoAppApiUsersApplication {
 	{
 		return new FeignErrorDecoder();
 	} */
-
 }

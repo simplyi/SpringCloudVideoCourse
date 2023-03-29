@@ -32,7 +32,7 @@ public class UsersServiceImpl implements UsersService {
 	
 	UsersRepository usersRepository;
 	BCryptPasswordEncoder bCryptPasswordEncoder;
-	//RestTemplate restTemplate;
+	RestTemplate restTemplate;
 	Environment environment;
 	AlbumsServiceClient albumsServiceClient;
 	
@@ -41,12 +41,12 @@ public class UsersServiceImpl implements UsersService {
 	@Autowired
 	public UsersServiceImpl(UsersRepository usersRepository, 
 			BCryptPasswordEncoder bCryptPasswordEncoder,
-			AlbumsServiceClient albumsServiceClient,
+			RestTemplate restTemplate,
 			Environment environment)
 	{
 		this.usersRepository = usersRepository;
 		this.bCryptPasswordEncoder = bCryptPasswordEncoder;
-		this.albumsServiceClient = albumsServiceClient;
+		this.restTemplate = restTemplate;
 		this.environment = environment;
 	}
  
@@ -96,17 +96,19 @@ public class UsersServiceImpl implements UsersService {
         
         UserDto userDto = new ModelMapper().map(userEntity, UserDto.class);
         
-        /*
+        
         String albumsUrl = String.format(environment.getProperty("albums.url"), userId);
         
-        ResponseEntity<List<AlbumResponseModel>> albumsListResponse = restTemplate.exchange(albumsUrl, HttpMethod.GET, null, new ParameterizedTypeReference<List<AlbumResponseModel>>() {
+        ResponseEntity<List<AlbumResponseModel>> albumsListResponse = 
+        		restTemplate.exchange(albumsUrl, HttpMethod.GET, null, 
+        				new ParameterizedTypeReference<List<AlbumResponseModel>>() {
         });
         List<AlbumResponseModel> albumsList = albumsListResponse.getBody(); 
-        */
+       
         
-        logger.info("Before calling albums Microservice");
-        List<AlbumResponseModel> albumsList = albumsServiceClient.getAlbums(userId);
-        logger.info("After calling albums Microservice");
+        logger.debug("Before calling albums Microservice");
+        //List<AlbumResponseModel> albumsList = albumsServiceClient.getAlbums(userId);
+        logger.debug("After calling albums Microservice");
         
 		userDto.setAlbums(albumsList);
 		
