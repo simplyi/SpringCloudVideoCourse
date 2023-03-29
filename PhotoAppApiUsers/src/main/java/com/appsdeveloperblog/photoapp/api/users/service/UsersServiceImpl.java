@@ -32,7 +32,7 @@ public class UsersServiceImpl implements UsersService {
 	
 	UsersRepository usersRepository;
 	BCryptPasswordEncoder bCryptPasswordEncoder;
-	RestTemplate restTemplate;
+	//RestTemplate restTemplate;
 	Environment environment;
 	AlbumsServiceClient albumsServiceClient;
 	
@@ -41,12 +41,12 @@ public class UsersServiceImpl implements UsersService {
 	@Autowired
 	public UsersServiceImpl(UsersRepository usersRepository, 
 			BCryptPasswordEncoder bCryptPasswordEncoder,
-			RestTemplate restTemplate,
+			AlbumsServiceClient albumsServiceClient,
 			Environment environment)
 	{
 		this.usersRepository = usersRepository;
 		this.bCryptPasswordEncoder = bCryptPasswordEncoder;
-		this.restTemplate = restTemplate;
+		this.albumsServiceClient = albumsServiceClient;
 		this.environment = environment;
 	}
  
@@ -96,7 +96,7 @@ public class UsersServiceImpl implements UsersService {
         
         UserDto userDto = new ModelMapper().map(userEntity, UserDto.class);
         
-        
+       /* 
         String albumsUrl = String.format(environment.getProperty("albums.url"), userId);
         
         ResponseEntity<List<AlbumResponseModel>> albumsListResponse = 
@@ -104,10 +104,10 @@ public class UsersServiceImpl implements UsersService {
         				new ParameterizedTypeReference<List<AlbumResponseModel>>() {
         });
         List<AlbumResponseModel> albumsList = albumsListResponse.getBody(); 
-       
+       */
         
         logger.debug("Before calling albums Microservice");
-        //List<AlbumResponseModel> albumsList = albumsServiceClient.getAlbums(userId);
+        List<AlbumResponseModel> albumsList = albumsServiceClient.getAlbums(userId);
         logger.debug("After calling albums Microservice");
         
 		userDto.setAlbums(albumsList);

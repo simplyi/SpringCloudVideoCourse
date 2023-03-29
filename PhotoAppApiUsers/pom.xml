@@ -17,7 +17,7 @@
 
 	<properties>
 		<java.version>17</java.version>
-		<spring-cloud.version>2022.0.0</spring-cloud.version>
+		<spring-cloud.version>2022.0.1</spring-cloud.version>
 	</properties>
 
 	<dependencies>
@@ -150,6 +150,11 @@
 		<dependency>
 			<groupId>io.zipkin.reporter2</groupId>
 			<artifactId>zipkin-reporter-brave</artifactId>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/io.github.openfeign/feign-micrometer -->
+		<dependency>
+			<groupId>io.github.openfeign</groupId>
+			<artifactId>feign-micrometer</artifactId>
 		</dependency>
 
 
