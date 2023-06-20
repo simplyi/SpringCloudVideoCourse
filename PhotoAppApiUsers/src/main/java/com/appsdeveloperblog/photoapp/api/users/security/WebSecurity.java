@@ -49,19 +49,19 @@ public class WebSecurity {
     			new AuthenticationFilter(usersService, environment, authenticationManager);
     	authenticationFilter.setFilterProcessesUrl(environment.getProperty("login.url.path"));
     	
-        http.csrf().disable();
+        http.csrf((csrf) -> csrf.disable());
   
-        http.authorizeHttpRequests()
+        http.authorizeHttpRequests((authz) -> authz
         .requestMatchers("/users/**").access(
 				new WebExpressionAuthorizationManager("hasIpAddress('"+environment.getProperty("gateway.ip")+"')"))
-		.requestMatchers(new AntPathRequestMatcher("/h2-console/**")).permitAll()
-        .and()
+		.requestMatchers(new AntPathRequestMatcher("/h2-console/**")).permitAll())
         .addFilter(new AuthorizationFilter(authenticationManager, environment))
         .addFilter(authenticationFilter)
         .authenticationManager(authenticationManager)
-        .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+        .sessionManagement((session) -> session
+        .sessionCreationPolicy(SessionCreationPolicy.STATELESS));
  
-         http.headers().frameOptions().disable();
+        http.headers((headers) -> headers.frameOptions((frameOptions) -> frameOptions.sameOrigin()));
         return http.build();
 
     }
