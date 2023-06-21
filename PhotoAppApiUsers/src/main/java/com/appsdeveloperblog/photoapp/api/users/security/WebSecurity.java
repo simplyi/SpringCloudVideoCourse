@@ -20,60 +20,57 @@ import com.appsdeveloperblog.photoapp.api.users.service.UsersService;
 @Configuration
 @EnableWebSecurity
 public class WebSecurity {
-	
+
 	private Environment environment;
 	private UsersService usersService;
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
 
 	@Autowired
-	public WebSecurity(Environment environment, UsersService usersService, BCryptPasswordEncoder bCryptPasswordEncoder)
-	{
+	public WebSecurity(Environment environment, UsersService usersService,
+			BCryptPasswordEncoder bCryptPasswordEncoder) {
 		this.environment = environment;
 		this.usersService = usersService;
 		this.bCryptPasswordEncoder = bCryptPasswordEncoder;
 	}
 
-	
-    @Bean
-    public SecurityFilterChain configure(HttpSecurity http) throws Exception {
-      
-        // Configure AuthenticationManagerBuilder
-        AuthenticationManagerBuilder authenticationManagerBuilder = http.getSharedObject(AuthenticationManagerBuilder.class);
-        authenticationManagerBuilder.userDetailsService(usersService).passwordEncoder(bCryptPasswordEncoder);
+	@Bean
+	public SecurityFilterChain configure(HttpSecurity http) throws Exception {
 
-        // Get AuthenticationManager
-        AuthenticationManager authenticationManager = authenticationManagerBuilder.build();
+		// Configure AuthenticationManagerBuilder
+		AuthenticationManagerBuilder authenticationManagerBuilder = http
+				.getSharedObject(AuthenticationManagerBuilder.class);
+		authenticationManagerBuilder.userDetailsService(usersService).passwordEncoder(bCryptPasswordEncoder);
 
-        http
-                .cors().and()
-                .csrf().disable().authorizeHttpRequests()
-                .requestMatchers(HttpMethod.POST, "/users")
-                     .access(new WebExpressionAuthorizationManager(
-        				"hasIpAddress('"+environment.getProperty("gateway.ip")+"')"
-        				))
-                .requestMatchers(HttpMethod.POST, environment.getProperty("login.url.path")).permitAll()
-                .requestMatchers(new AntPathRequestMatcher("/h2-console/**")).permitAll()
-                .anyRequest().authenticated().and()
+		// Get AuthenticationManager
+		AuthenticationManager authenticationManager = authenticationManagerBuilder.build();
 
-                .addFilter(getAuthenticationFilter(authenticationManager))
-                .authenticationManager(authenticationManager)
+		http
+		.cors(cors -> {})
+		.csrf((csrf) -> csrf.disable())
+				.authorizeHttpRequests((authz) -> authz.requestMatchers(HttpMethod.POST, "/users")
+						.access(new WebExpressionAuthorizationManager(
+								"hasIpAddress('" + environment.getProperty("gateway.ip") + "')"))
+						.requestMatchers(HttpMethod.POST, environment.getProperty("login.url.path")).permitAll()
+						.requestMatchers(new AntPathRequestMatcher("/h2-console/**")).permitAll()
+						.anyRequest()
+						.authenticated())
+				.addFilter(getAuthenticationFilter(authenticationManager))
+				.addFilter(new AuthorizationFilter(authenticationManager, environment))
+				.authenticationManager(authenticationManager)
+				.sessionManagement((session) -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
+		
+		http.headers((headers) -> headers.frameOptions((frameOptions) -> frameOptions.sameOrigin()));
 
-                .sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+		return http.build();
+	}
 
-        http.headers().frameOptions().disable();
+	protected AuthenticationFilter getAuthenticationFilter(AuthenticationManager authenticationManager)
+			throws Exception {
+		final AuthenticationFilter filter = new AuthenticationFilter(usersService, environment, authenticationManager);
+		filter.setFilterProcessesUrl(environment.getProperty("login.url.path"));
+		return filter;
+	}
 
-        return http.build();
-    }
- 
-    protected AuthenticationFilter getAuthenticationFilter(AuthenticationManager authenticationManager) throws Exception {
-        final AuthenticationFilter filter = new AuthenticationFilter(usersService,environment, authenticationManager);
-        filter.setFilterProcessesUrl(environment.getProperty("login.url.path"));
-        return filter;
-    }
-    
-    
-	
 //	@Override
 //	protected void configure(HttpSecurity http) throws Exception {
 //		http.csrf().disable();
@@ -82,7 +79,7 @@ public class WebSecurity {
 //		.addFilter(getAuthenticationFilter());
 //		http.headers().frameOptions().disable();
 //	}
-	
+
 //	private AuthenticationFilter getAuthenticationFilter() throws Exception
 //	{
 //		AuthenticationFilter authenticationFilter = new AuthenticationFilter(usersService, environment, authenticationManager());
@@ -90,7 +87,7 @@ public class WebSecurity {
 //		authenticationFilter.setFilterProcessesUrl(environment.getProperty("login.url.path"));
 //		return authenticationFilter;
 //	}
-	
+
 //    @Override
 //    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 //        auth.userDetailsService(usersService).passwordEncoder(bCryptPasswordEncoder);

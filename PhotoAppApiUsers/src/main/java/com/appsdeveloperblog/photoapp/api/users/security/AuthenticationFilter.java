@@ -1,7 +1,9 @@
 package com.appsdeveloperblog.photoapp.api.users.security;
 
 import java.io.IOException;
+import java.time.Instant;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.Date;
 import org.springframework.core.env.Environment;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -16,6 +18,8 @@ import com.appsdeveloperblog.photoapp.api.users.shared.UserDto;
 import com.appsdeveloperblog.photoapp.api.users.ui.model.LoginRequestModel;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import javax.crypto.SecretKey;
+import javax.crypto.spec.SecretKeySpec;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import jakarta.servlet.FilterChain;
@@ -62,16 +66,20 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
                                             FilterChain chain,
                                             Authentication auth) throws IOException, ServletException {
     	String userName = ((User) auth.getPrincipal()).getUsername();
-    	UserDto userDetails = usersService.getUserDetailsByEmail(userName);
-    	
-        String token = Jwts.builder()
-                .setSubject(userDetails.getUserId())
-                .setExpiration(new Date(System.currentTimeMillis() + Long.parseLong(environment.getProperty("token.expiration_time"))))
-                .signWith(SignatureAlgorithm.HS512, environment.getProperty("token.secret") )
-                .compact();
-        
-        res.addHeader("token", token);
-        res.addHeader("userId", userDetails.getUserId());
+		UserDto userDetails = usersService.getUserDetailsByEmail(userName);
+		String tokenSecret = environment.getProperty("token.secret");
+		byte[] secretKeyBytes = Base64.getEncoder().encode(tokenSecret.getBytes());
+		SecretKey secretKey = new SecretKeySpec(secretKeyBytes, SignatureAlgorithm.HS512.getJcaName());
+
+		Instant now = Instant.now();
+
+		String token = Jwts.builder().setSubject(userDetails.getUserId())
+				.setExpiration(
+						Date.from(now.plusMillis(Long.parseLong(environment.getProperty("token.expiration_time")))))
+				.setIssuedAt(Date.from(now)).signWith(secretKey, SignatureAlgorithm.HS512).compact();
+
+		res.addHeader("token", token);
+		res.addHeader("userId", userDetails.getUserId());
     } 
     
 	
