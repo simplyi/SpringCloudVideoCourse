@@ -2,7 +2,6 @@ package com.appsdeveloperblog.photoapp.api.users.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.env.Environment;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -19,12 +18,10 @@ import com.appsdeveloperblog.photoapp.api.users.service.UsersService;
 @EnableWebSecurity
 public class WebSecurity {
 	
-	private Environment environment;
 	private UsersService usersService;
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
 	
-	public WebSecurity(Environment environment, UsersService usersService, BCryptPasswordEncoder bCryptPasswordEncoder) {
-		this.environment = environment;
+	public WebSecurity(UsersService usersService, BCryptPasswordEncoder bCryptPasswordEncoder) {
 		this.usersService = usersService;
 		this.bCryptPasswordEncoder = bCryptPasswordEncoder;
 	}
@@ -41,22 +38,16 @@ public class WebSecurity {
     	
     	AuthenticationManager authenticationManager = authenticationManagerBuilder.build();
     	
-    	// Create AuthenticationFilter
-    	AuthenticationFilter authenticationFilter = 
-    			new AuthenticationFilter(usersService, environment, authenticationManager);
-    	authenticationFilter.setFilterProcessesUrl(environment.getProperty("login.url.path"));
-    	
-        http.csrf().disable();
+    	http.csrf((csrf) -> csrf.disable());
   
-        http.authorizeHttpRequests()
+    	http.authorizeHttpRequests((authz) -> authz
         .requestMatchers(HttpMethod.POST, "/users").permitAll()
-        .requestMatchers(new AntPathRequestMatcher("/h2-console/**")).permitAll()
-        .and()
-        .addFilter(authenticationFilter)
+        .requestMatchers(new AntPathRequestMatcher("/h2-console/**")).permitAll())
         .authenticationManager(authenticationManager)
-        .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+        .sessionManagement((session) -> session
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS));
  
-         http.headers().frameOptions().disable();
+    	http.headers((headers) -> headers.frameOptions((frameOptions) -> frameOptions.sameOrigin()));
         return http.build();
 
     }
