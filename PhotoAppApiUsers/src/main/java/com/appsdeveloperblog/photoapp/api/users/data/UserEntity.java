@@ -45,7 +45,6 @@ public class UserEntity implements Serializable {
 			inverseJoinColumns=@JoinColumn(name="roles_id", referencedColumnName="id"))
 	Collection<RoleEntity> roles;
 	
-	
 	public long getId() {
 		return id;
 	}
@@ -83,6 +82,11 @@ public class UserEntity implements Serializable {
 		this.encryptedPassword = encryptedPassword;
 	}
 	
-	
+	public Collection<RoleEntity> getRoles() {
+		return roles;
+	}
+	public void setRoles(Collection<RoleEntity> roles) {
+		this.roles = roles;
+	}
 
 }
