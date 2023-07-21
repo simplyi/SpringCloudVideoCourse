@@ -68,7 +68,9 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
 		Instant now = Instant.now();
 
-		String token = Jwts.builder().setSubject(userDetails.getUserId())
+		String token = Jwts.builder()
+				.claim("scope", auth.getAuthorities())
+				.setSubject(userDetails.getUserId())
 				.setExpiration(
 						Date.from(now.plusMillis(Long.parseLong(environment.getProperty("token.expiration_time")))))
 				.setIssuedAt(Date.from(now)).signWith(secretKey, SignatureAlgorithm.HS512).compact();

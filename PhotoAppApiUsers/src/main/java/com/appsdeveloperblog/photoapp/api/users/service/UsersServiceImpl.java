@@ -1,6 +1,7 @@
 package com.appsdeveloperblog.photoapp.api.users.service;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.UUID;
 
@@ -17,6 +18,8 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -75,7 +78,22 @@ public class UsersServiceImpl implements UsersService {
 		
 		if(userEntity == null) throw new UsernameNotFoundException(username);	
 		
-		return new User(userEntity.getEmail(), userEntity.getEncryptedPassword(), true, true, true, true, new ArrayList<>());
+		Collection<GrantedAuthority> authorities = new ArrayList<>();
+		Collection<RoleEntity> roles = userEntity.getRoles();
+		
+		roles.forEach((role) -> {
+			authorities.add(new SimpleGrantedAuthority(role.getName()));
+			
+			Collection<AuthorityEntity> authorityEntities = role.getAuthorities();
+			authorityEntities.forEach((authorityEntity) -> {
+				authorities.add(new SimpleGrantedAuthority(authorityEntity.getName()));
+			});
+		});
+		
+		return new User(userEntity.getEmail(), 
+				userEntity.getEncryptedPassword(), 
+				true, true, true, true, 
+				authorities);
 	}
 
 	@Override
