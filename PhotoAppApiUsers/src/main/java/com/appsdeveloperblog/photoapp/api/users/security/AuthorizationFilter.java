@@ -23,6 +23,7 @@ import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import com.appsdeveloperblog.JwtAuthorities.JwtClaimsParser;
 
 public class AuthorizationFilter extends BasicAuthenticationFilter {
 	
@@ -64,22 +65,15 @@ public class AuthorizationFilter extends BasicAuthenticationFilter {
         String tokenSecret = environment.getProperty("token.secret");
         
         if(tokenSecret==null) return null;
-
-        byte[] secretKeyBytes = Base64.getEncoder().encode(tokenSecret.getBytes());
-        SecretKey secretKey = new SecretKeySpec(secretKeyBytes, SignatureAlgorithm.HS512.getJcaName());
-
-        JwtParser jwtParser = Jwts.parserBuilder()
-                .setSigningKey(secretKey)
-                .build();
-
-        Jwt<Header, Claims> jwt = jwtParser.parse(token);
-        String userId = jwt.getBody().getSubject();
-
+        
+        JwtClaimsParser jwtClaimsParser = new JwtClaimsParser(token, tokenSecret);
+        String userId = jwtClaimsParser.getJwtSubject();
+ 
         if (userId == null) {
             return null;
         }
 
-        return new UsernamePasswordAuthenticationToken(userId, null, new ArrayList<>());
+        return new UsernamePasswordAuthenticationToken(userId, null, jwtClaimsParser.getUserAuthorities());
 
     }
     
