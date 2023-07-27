@@ -58,8 +58,9 @@ public class UsersController {
 	}
 	
     @GetMapping(value="/{userId}", produces = { MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE })
+    @PreAuthorize("hasRole('ADMIN') or principal == #userId")
     //@PreAuthorize("principal == #userId")
-    @PostAuthorize("principal == returnObject.body.userId")
+    //@PostAuthorize("principal == returnObject.body.userId")
     public ResponseEntity<UserResponseModel> getUser(@PathVariable("userId") String userId) {
        
         UserDto userDto = usersService.getUserByUserId(userId); 
