@@ -44,5 +44,9 @@ public class JwtClaimsParser {
 	    		.map(scopeMap -> new SimpleGrantedAuthority(scopeMap.get("authority")))
 	    		.collect(Collectors.toList());
 	}
+	
+	public String getJwtSubject() {
+		return ((Claims)jwtObject.getBody()).getSubject();
+	}
 
 }
