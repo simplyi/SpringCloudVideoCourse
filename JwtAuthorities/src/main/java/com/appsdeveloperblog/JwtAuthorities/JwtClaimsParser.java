@@ -11,6 +11,7 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.springframework.security.core.GrantedAuthority;
@@ -37,14 +38,11 @@ public class JwtClaimsParser {
 	}
 	
 	public Collection<? extends GrantedAuthority> getUserAuthorities() {
-		Collection<String> scopes = ((Claims)jwtObject.getBody()).get("scope", List.class);
-		
-		return scopes.stream()
-				.map(SimpleGrantedAuthority::new)
-				.collect(Collectors.toList());
+	    Collection<Map<String, String>> scopes = ((Claims)jwtObject.getBody()).get("scope", List.class);
+	    
+	    return scopes.stream()
+	    		.map(scopeMap -> new SimpleGrantedAuthority(scopeMap.get("authority")))
+	    		.collect(Collectors.toList());
 	}
-	
-	public String getJwtSubject() {
-		return ((Claims)jwtObject.getBody()).getSubject();
-	}
+
 }
