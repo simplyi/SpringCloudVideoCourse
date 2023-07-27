@@ -10,6 +10,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -67,6 +68,15 @@ public class UsersController {
         UserResponseModel returnValue = new ModelMapper().map(userDto, UserResponseModel.class);
         
         return ResponseEntity.status(HttpStatus.OK).body(returnValue);
+    }
+    
+    @PreAuthorize("hasRole('ADMIN') or hasAuthority('PROFILE_DELETE') or principal == #userId")
+    @DeleteMapping("/{userId}")
+    public String deleteUser(@PathVariable("userId") String userId) {
+    	
+    	// Delete user logic here
+    	
+    	return "Deleting user with id " + userId;
     }
 	
 	
