@@ -107,7 +107,7 @@ public class UsersServiceImpl implements UsersService {
 	}
 
 	@Override
-	public UserDto getUserByUserId(String userId) {
+	public UserDto getUserByUserId(String userId, String authorization) {
 		
         UserEntity userEntity = usersRepository.findByUserId(userId);     
         if(userEntity == null) throw new UsernameNotFoundException("User not found");
@@ -123,7 +123,7 @@ public class UsersServiceImpl implements UsersService {
         */
         
         logger.info("Before calling albums Microservice");
-        List<AlbumResponseModel> albumsList = albumsServiceClient.getAlbums(userId);
+        List<AlbumResponseModel> albumsList = albumsServiceClient.getAlbums(userId, authorization);
         logger.info("After calling albums Microservice");
         
 		userDto.setAlbums(albumsList);

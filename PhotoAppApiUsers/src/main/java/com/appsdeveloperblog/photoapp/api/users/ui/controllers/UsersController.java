@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -62,9 +63,10 @@ public class UsersController {
     @PreAuthorize("hasRole('ADMIN') or principal == #userId")
     //@PreAuthorize("principal == #userId")
     //@PostAuthorize("principal == returnObject.body.userId")
-    public ResponseEntity<UserResponseModel> getUser(@PathVariable("userId") String userId) {
+    public ResponseEntity<UserResponseModel> getUser(@PathVariable("userId") String userId, 
+    		@RequestHeader("Authorization") String authorization) {
        
-        UserDto userDto = usersService.getUserByUserId(userId); 
+        UserDto userDto = usersService.getUserByUserId(userId, authorization); 
         UserResponseModel returnValue = new ModelMapper().map(userDto, UserResponseModel.class);
         
         return ResponseEntity.status(HttpStatus.OK).body(returnValue);
