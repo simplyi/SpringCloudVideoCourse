@@ -19,6 +19,7 @@ import io.jsonwebtoken.Jwt;
 import io.jsonwebtoken.JwtParser;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.security.Keys;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -60,20 +61,20 @@ public class AuthorizationFilter extends BasicAuthenticationFilter {
             return null;
         }
 
-        String token = authorizationHeader.replace(environment.getProperty("authorization.token.header.prefix"), "");
+        String token = authorizationHeader.replace(environment.getProperty("authorization.token.header.prefix"), "").trim();
         String tokenSecret = environment.getProperty("token.secret");
         
         if(tokenSecret==null) return null;
 
         byte[] secretKeyBytes = Base64.getEncoder().encode(tokenSecret.getBytes());
-        SecretKey secretKey = new SecretKeySpec(secretKeyBytes, SignatureAlgorithm.HS512.getJcaName());
+        SecretKey secretKey = Keys.hmacShaKeyFor(secretKeyBytes);
 
-        JwtParser jwtParser = Jwts.parserBuilder()
-                .setSigningKey(secretKey)
+        JwtParser parser = Jwts.parser()
+                .verifyWith(secretKey)
                 .build();
 
-        Jwt<Header, Claims> jwt = jwtParser.parse(token);
-        String userId = jwt.getBody().getSubject();
+        Claims claims = parser.parseSignedClaims(token).getPayload();
+        String userId = (String) claims.get("sub");
 
         if (userId == null) {
             return null;

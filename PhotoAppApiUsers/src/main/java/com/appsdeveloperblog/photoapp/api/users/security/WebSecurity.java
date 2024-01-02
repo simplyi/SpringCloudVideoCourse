@@ -52,7 +52,7 @@ public class WebSecurity {
         http.csrf((csrf) -> csrf.disable());
   
         http.authorizeHttpRequests((authz) -> authz
-        .requestMatchers("/users/**").access(
+        .requestMatchers(new AntPathRequestMatcher("/users/**")).access(
 				new WebExpressionAuthorizationManager("hasIpAddress('"+environment.getProperty("gateway.ip")+"')"))
 		.requestMatchers(new AntPathRequestMatcher("/h2-console/**")).permitAll())
         .addFilter(new AuthorizationFilter(authenticationManager, environment))
