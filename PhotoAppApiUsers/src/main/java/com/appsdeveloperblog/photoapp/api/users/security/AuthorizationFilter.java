@@ -61,7 +61,7 @@ public class AuthorizationFilter extends BasicAuthenticationFilter {
             return null;
         }
 
-        String token = authorizationHeader.replace(environment.getProperty("authorization.token.header.prefix"), "");
+        String token = authorizationHeader.replace(environment.getProperty("authorization.token.header.prefix"), "").trim();
         String tokenSecret = environment.getProperty("token.secret");
         
         if(tokenSecret==null) return null;

@@ -7,9 +7,9 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwt;
 import io.jsonwebtoken.JwtParser;
 import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.security.Keys;
+
 import javax.crypto.SecretKey;
-import javax.crypto.spec.SecretKeySpec;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -28,17 +28,18 @@ public class JwtClaimsParser {
 	
 	Jwt<?,?> parseJwt(String jwtString, String secretToken) {
 		byte[] secretKeyBytes = Base64.getEncoder().encode(secretToken.getBytes());
-		SecretKey secretKey = new SecretKeySpec(secretKeyBytes, SignatureAlgorithm.HS512.getJcaName());
+		SecretKey secretKey = Keys.hmacShaKeyFor(secretKeyBytes);
 		
-		JwtParser jwtParser = Jwts.parserBuilder()
-				.setSigningKey(secretKey)
-				.build();
+		JwtParser jwtParser = Jwts.parser()
+	                .verifyWith(secretKey)
+	                .build();
 		
 		return jwtParser.parse(jwtString);
 	}
 	
 	public Collection<? extends GrantedAuthority> getUserAuthorities() {
-	    Collection<Map<String, String>> scopes = ((Claims)jwtObject.getBody()).get("scope", List.class);
+ 
+		Collection<Map<String, String>> scopes = ((Claims)jwtObject.getPayload()).get("scope", List.class);
 	    
 	    return scopes.stream()
 	    		.map(scopeMap -> new SimpleGrantedAuthority(scopeMap.get("authority")))
@@ -46,7 +47,7 @@ public class JwtClaimsParser {
 	}
 	
 	public String getJwtSubject() {
-		return ((Claims)jwtObject.getBody()).getSubject();
+		return ((Claims)jwtObject.getPayload()).getSubject();
 	}
 
 }
