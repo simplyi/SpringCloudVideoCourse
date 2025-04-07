@@ -28,6 +28,7 @@ public class SecurityConfig {
 		http
 		.authorizeHttpRequests(auth->auth
 				.requestMatchers(HttpMethod.POST, "/actuator/busrefresh").hasRole("ADMIN")
+				.requestMatchers(HttpMethod.GET, "/**").hasRole("CLIENT")
 				.anyRequest().authenticated())
 		.csrf(csrf->csrf.ignoringRequestMatchers("/actuator/busrefresh"))
 		.httpBasic(Customizer.withDefaults());
@@ -45,7 +46,15 @@ public class SecurityConfig {
 				.roles(environment.getProperty("spring.security.user.roles"))
 				.build();
 		
-		return new InMemoryUserDetailsManager(admin);
+		UserDetails client = User
+				.withUsername(environment.getProperty("my-spring.security.user.name"))
+				.password(passwordEncoder.encode(environment.getProperty("my-spring.security.user.password")))
+				.roles(environment.getProperty("my-spring.security.user.roles"))
+				.build();
+		
+		
+		
+		return new InMemoryUserDetailsManager(admin,client);
 	}
 	
 	@Bean
