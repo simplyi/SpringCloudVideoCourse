@@ -40,10 +40,10 @@ public class JwtClaimsParser {
 	}
 	
 	public Collection<? extends GrantedAuthority> getUserAuthorities() { 
-	    Collection<Map<String, String>> scopes = ((Claims)jwtObject.getPayload()).get("scope", List.class);
+	    Collection<String> scopes = ((Claims)jwtObject.getPayload()).get("scope", List.class);
 	    
 	    return scopes.stream()
-	    		.map(scopeMap -> new SimpleGrantedAuthority(scopeMap.get("authority")))
+	    		.map(scope -> new SimpleGrantedAuthority(scope))
 	    		.collect(Collectors.toList());
 	}
 	

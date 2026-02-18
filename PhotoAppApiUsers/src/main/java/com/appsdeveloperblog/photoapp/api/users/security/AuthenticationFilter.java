@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Base64;
+import java.util.stream.Collectors;
 import java.util.Date;
 
 import javax.crypto.SecretKey;
@@ -70,7 +71,9 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 		Instant now = Instant.now();
 
 		String token = Jwts.builder()
-				.claim("scope", auth.getAuthorities())
+				.claim("scope", auth.getAuthorities().stream()
+						.map(authority -> authority.getAuthority())
+						.collect(Collectors.toList()))
 				.subject(userDetails.getUserId())
 				.expiration(
 						Date.from(now.plusMillis(Long.parseLong(environment.getProperty("token.expiration_time")))))

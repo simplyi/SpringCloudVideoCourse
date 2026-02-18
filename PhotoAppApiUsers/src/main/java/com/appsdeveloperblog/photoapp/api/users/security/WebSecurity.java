@@ -13,7 +13,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.access.expression.WebExpressionAuthorizationManager;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.security.web.servlet.util.matcher.PathPatternRequestMatcher;
 
 import com.appsdeveloperblog.photoapp.api.users.service.UsersService;
 
@@ -52,9 +52,9 @@ public class WebSecurity {
         http.csrf((csrf) -> csrf.disable());
   
         http.authorizeHttpRequests((authz) -> authz
-        .requestMatchers(new AntPathRequestMatcher("/users/**")).access(
+        .requestMatchers(PathPatternRequestMatcher.withDefaults().matcher("/users/**")).access(
 				new WebExpressionAuthorizationManager("hasIpAddress('"+environment.getProperty("gateway.ip")+"')"))
-		.requestMatchers(new AntPathRequestMatcher("/h2-console/**")).permitAll())
+		.requestMatchers(PathPatternRequestMatcher.withDefaults().matcher("/h2-console/**")).permitAll())
         .addFilter(new AuthorizationFilter(authenticationManager, environment))
         .addFilter(authenticationFilter)
         .authenticationManager(authenticationManager)
